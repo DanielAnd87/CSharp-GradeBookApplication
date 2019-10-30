@@ -7,34 +7,62 @@ namespace GradeBook.GradeBooks
     {
         public RankedGradeBook(string name) : base(name)
         {
-            this.Type = GradeBookType.Ranked;
+            Type = GradeBookType.Ranked;
         }
 
 
         public override char GetLetterGrade(double averageGrade)
         {
+
+
+
             if (Students.Count < 5)
             {
                 throw new InvalidOperationException();
 
                 return 'F';
             }
-            else if (averageGrade >= 0.8D)
+
+            double place = (double) CheckPlace(averageGrade);
+
+            if (Students.Count/place >= 0.8D)
             {
                 return 'A';
-            }else if (averageGrade >= 0.6D && averageGrade < 0.8D)
+            }
+            if (Students.Count / place >= 0.6D)
             {
                 return 'B';
-            }else if (averageGrade >= 0.4D && averageGrade < 0.6D)
+            }
+            if (Students.Count / place >= 0.4D)
             {
                 return 'C';
-            }else if (averageGrade >= 0.2D && averageGrade < 0.4D)
+            }
+            if (Students.Count / place >= 0.2D)
             {
                 return 'D';
-            }else
-            {
-                return 'F';
             }
+            return 'F';
+
+        }
+
+        private int CheckPlace(double averageGrade)
+        {
+            int i = 0;
+            double[] arr = new double[Students.Count];
+            foreach (Student student in Students)
+            {
+                arr[i] = student.AverageGrade;
+                i++;
+            }
+            Array.Sort(arr);
+            i = 0;
+            foreach (Student student in Students)
+            {
+                if (averageGrade < arr[i]) return i; 
+                    i++;
+            }
+
+            return Students.Count;
 
         }
     }
