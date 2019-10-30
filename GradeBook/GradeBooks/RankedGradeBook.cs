@@ -23,7 +23,7 @@ namespace GradeBook.GradeBooks
                 return 'F';
             }
 
-            double place = (double) CheckPlace(averageGrade);
+            double place = (double) CheckPlace(averageGrade) +1;
 
             var studentsCount = place / Students.Count;
 
