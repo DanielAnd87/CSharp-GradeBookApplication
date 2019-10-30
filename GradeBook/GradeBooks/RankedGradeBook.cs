@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using GradeBook.Enums;
 
 namespace GradeBook.GradeBooks
@@ -23,23 +25,26 @@ namespace GradeBook.GradeBooks
                 return 'F';
             }
 
-            double place = (double) CheckPlace(averageGrade) +1;
+            List<double> grades = Students.OrderByDescending(e => e.AverageGrade).Select(e => e.AverageGrade).ToList();
+            int threshold = (int) Math.Ceiling(Students.Count * 0.2);
 
-            var studentsCount = place / Students.Count;
 
-            if (studentsCount >= 0.8D)
+
+
+
+            if (grades[threshold - 1] <= averageGrade)
             {
                 return 'A';
             }
-            if (studentsCount >= 0.6D && studentsCount < 0.8D)
+            if (grades[threshold*2 - 1] <= averageGrade)
             {
                 return 'B';
             }
-            if (studentsCount >= 0.4D && studentsCount < 0.6D)
+            if (grades[threshold * 3 - 1] <= averageGrade)
             {
                 return 'C';
             }
-            if (studentsCount >= 0.2D && studentsCount < 0.4D)
+            if (grades[threshold * 4 - 1] <= averageGrade)
             {
                 return 'D';
             }
