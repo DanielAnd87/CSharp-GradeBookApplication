@@ -22,13 +22,13 @@ namespace GradeBook.GradeBooks
             else if (averageGrade >= 0.8D)
             {
                 return 'A';
-            }else if (averageGrade >= 0.6D)
+            }else if (averageGrade >= 0.6D && averageGrade < 0.8D)
             {
                 return 'B';
-            }else if (averageGrade >= 0.4D)
+            }else if (averageGrade >= 0.4D && averageGrade < 0.6D)
             {
                 return 'C';
-            }else if (averageGrade >= 0.2D)
+            }else if (averageGrade >= 0.2D && averageGrade < 0.4D)
             {
                 return 'D';
             }else
