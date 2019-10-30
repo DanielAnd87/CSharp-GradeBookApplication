@@ -25,19 +25,19 @@ namespace GradeBook.GradeBooks
 
             double place = (double) CheckPlace(averageGrade);
 
-            if (Students.Count/place >= 0.8D)
+            if (place / Students.Count >= 0.8D)
             {
                 return 'A';
             }
-            if (Students.Count / place >= 0.6D)
+            if (place / Students.Count >= 0.6D)
             {
                 return 'B';
             }
-            if (Students.Count / place >= 0.4D)
+            if (place / Students.Count >= 0.4D)
             {
                 return 'C';
             }
-            if (Students.Count / place >= 0.2D)
+            if (place / Students.Count >= 0.2D)
             {
                 return 'D';
             }
@@ -56,10 +56,10 @@ namespace GradeBook.GradeBooks
             }
             Array.Sort(arr);
             i = 0;
-            foreach (Student student in Students)
+            foreach (int score in arr)
             {
-                if (averageGrade < arr[i]) return i; 
-                    i++;
+                if (averageGrade > score) return i; 
+                i++;
             }
 
             return Students.Count;
