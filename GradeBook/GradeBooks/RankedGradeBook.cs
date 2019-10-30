@@ -25,19 +25,21 @@ namespace GradeBook.GradeBooks
 
             double place = (double) CheckPlace(averageGrade);
 
-            if (place / Students.Count >= 0.8D)
+            var studentsCount = place / Students.Count;
+
+            if (studentsCount >= 0.8D)
             {
                 return 'A';
             }
-            if (place / Students.Count >= 0.6D)
+            if (studentsCount >= 0.6D && studentsCount < 0.8D)
             {
                 return 'B';
             }
-            if (place / Students.Count >= 0.4D)
+            if (studentsCount >= 0.4D && studentsCount < 0.6D)
             {
                 return 'C';
             }
-            if (place / Students.Count >= 0.2D)
+            if (studentsCount >= 0.2D && studentsCount < 0.4D)
             {
                 return 'D';
             }
